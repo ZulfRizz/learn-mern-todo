@@ -1,42 +1,181 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Reset CSS dasar */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+body {
+	background-color: #202124; /* Warna Background Gelap */
+	color: #fff; /* Warna Teks Putih */
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App {
+	padding: 32px;
+	max-width: 600px; /* Agar tidak terlalu lebar di layar besar */
+	margin: 0 auto; /* Posisi tengah */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Header Styles */
+h1 {
+	font-size: 32px;
+	font-weight: 700;
+	margin-bottom: 8px;
 }
 
-.card {
-  padding: 2em;
+h4 {
+	font-size: 18px;
+	color: #8f9296; /* Warna abu-abu untuk sub-judul */
+	margin-bottom: 32px;
+	text-transform: uppercase;
+	font-weight: 400;
 }
 
-.read-the-docs {
-  color: #888;
+/* Style untuk List Todo */
+.todo {
+	position: relative;
+	background-color: #303134; /* Warna kartu todo */
+	padding: 16px;
+	border-radius: 12px;
+	display: flex;
+	align-items: center;
+	transition: 0.3s;
+	cursor: pointer;
+	margin-bottom: 16px;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.todo:hover {
+	background-color: #3a3b3e; /* Efek saat mouse hover */
+}
+
+/* Checkbox Bulat */
+.checkbox {
+	width: 20px;
+	height: 20px;
+	margin-right: 16px;
+	border-radius: 50%;
+	background-color: #202124;
+	border: 2px solid #5f6368;
+	transition: 0.3s;
+}
+
+/* Jika Todo Selesai (Completed) */
+.todo.is-complete .checkbox {
+	background-color: #00e5ff; /* Warna biru neon saat selesai */
+	border-color: #00e5ff;
+}
+
+.todo.is-complete .text {
+	text-decoration: line-through; /* Coret tulisan */
+	color: #5f6368;
+}
+
+/* Tombol Hapus (Silang Merah) */
+.delete-todo {
+	position: absolute;
+	right: 16px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 24px;
+	height: 24px;
+	background-color: #bd2525;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 14px;
+	font-weight: bold;
+	color: white;
+	opacity: 0; /* Sembunyi dulu */
+	transition: 0.3s;
+}
+
+/* Munculkan tombol hapus hanya saat di-hover */
+.todo:hover .delete-todo {
+	opacity: 1;
+}
+
+/* Tombol Tambah (+) Melayang */
+.addPopup {
+	position: fixed;
+	bottom: 32px;
+	right: 32px;
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	background-image: linear-gradient(to bottom right, #00e5ff, #2979ff); /* Gradasi Biru */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 32px;
+	font-weight: 900;
+	color: #fff;
+	cursor: pointer;
+	box-shadow: 0px 4px 15px rgba(0, 229, 255, 0.4);
+	transition: 0.3s;
+}
+
+.addPopup:hover {
+	transform: scale(1.1);
+}
+
+/* Popup Modal */
+.popup {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%); /* Posisi tengah layar */
+	width: 100%;
+	max-width: 400px;
+	background-color: #fff; /* Popup warnanya terang biar kontras */
+	padding: 32px;
+	border-radius: 16px;
+	box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+	color: #202124;
+}
+
+.closePopup {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+	font-weight: bold;
+	color: #555;
+}
+
+.popup h3 {
+	margin-bottom: 16px;
+	text-transform: uppercase;
+	font-size: 18px;
+}
+
+/* Input Form di dalam Popup */
+.add-todo-input {
+	width: 100%;
+	padding: 12px;
+	border-radius: 8px;
+	border: 2px solid #ddd;
+	margin-bottom: 24px;
+	font-size: 16px;
+	outline: none;
+}
+
+.add-todo-input:focus {
+	border-color: #2979ff;
+}
+
+.button {
+	padding: 12px 24px;
+	background-image: linear-gradient(to bottom right, #00e5ff, #2979ff);
+	border-radius: 8px;
+	color: #fff;
+	font-weight: 700;
+	text-transform: uppercase;
+	text-align: center;
+	cursor: pointer;
+	letter-spacing: 1px;
 }
